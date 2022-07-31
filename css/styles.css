@@ -1,0 +1,99 @@
+<?php
+//PHP code to send contact form to both client and owner
+if (isset($_POST['submit'])) {//Check if user enter data
+  $mailto = "aabrazak1@gmail.com"; //My email address
+  $from = $_POST['email']; //Senders email address
+  $name = $_POST['name']; //User name
+  $subject = "You Message Submitted Successfully | 123 WebDesign"; //This is for client
+  $message = "Client Name: ". $name. "Wrote the Followign Message"."\n\n". $_POST['message'];
+  $message2 = "Dear ". $name. "\n\n" ."Thank You For contavcting us! We'll get back to you shortly"; //This is for sender
+  $headers = "From: ". $from; //User entered email address
+  $headers2 = "From: ". $mailto; //This will receive to client
+  $result = mail($mailto, $message, $headers); //send email to website owner
+  $result2 = mail($from, $subject2, $message2, $headers2); //send email to User as well
+  if ($result) {
+    echo '<script type="text/javascript">alert("Message Sent. Thank You! We will contact you shortly!") </script>';
+  }else {
+    echo '<script type="text/javascript">alert("Submisssion Failed! Try again later") </script>';
+  }
+}
+?>
+
+}
+
+body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif;}
+body, html {
+  height: 100%;
+  color: #777;
+  line-height: 2.8;
+}
+
+#check{
+display: none;
+}
+
+.hidden-paragraph{
+display: none;
+transaction: 0.5s linear;
+
+}
+label{
+display : inline-block;
+margin top: 15px;
+color: #3768BD;
+text-decoration: underline;
+cursor: pointer;
+font-weight: 600;
+
+}
+#check:checked ~ .hidden-paragraph{
+display: block;
+}
+#check:checked ~ label{
+display: none;
+}
+#check:checked ~ label:after{
+hidden-paragraph:'Show Less';
+display: block;
+}
+
+/* Create a Parallax Effect */
+.bgimg-1, .bgimg-2, .bgimg-3 {
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+
+/* First image (Logo. Full height) */
+.bgimg-1 {
+  background-image: url("../image/download.jpg");
+ min-height: 100%;
+  
+}
+
+/* Second image (Portfolio) */
+.bgimg-2 {
+  background-image: url("/w3images/parallax2.jp");
+  min-height: 10px;
+}
+
+/* Third image (Contact) */
+.bgimg-3 {
+  background-image: url("/w3images/parallax3.jpg");
+  min-height: 10px;
+}
+
+.w3-wide {letter-spacing: 10px;}
+.w3-hover-opacity {cursor: pointer;}
+
+/* Turn off parallax scrolling for tablets and phones */
+@media only screen and (max-device-width: 1600px) {
+  .bgimg-1, .bgimg-2, .bgimg-3 {
+    background-attachment: scroll;
+
+
+    min-height: 60px;
+  }
+}
